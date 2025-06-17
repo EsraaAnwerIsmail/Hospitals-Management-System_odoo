@@ -1,0 +1,57 @@
+    <odoo>
+
+
+        <!-- tree view -->
+        <record id="hms_patient_tree_view" model="ir.ui.view">
+            <field name="name">hms patient tree</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="age"/>
+                    <field name="blood_type"/>
+                    <field name="pcr"/>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="hms_patient_form_view" model="ir.ui.view">
+            <field name="name">hms patient form</field>
+            <field name="model">hms.patient</field>
+             <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <notebook>
+                            <page string="page1">
+                                <group string="Personal Information">
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                    <field name="age"/>
+                                    <field name="birth_date"/>
+                                    <field name="address"/>
+                                    <field name="image"/>
+                                </group>
+                            </page>
+                            <page string="page2">
+                                <group string="medical Information">
+                                    <field name="history"/>
+                                    <field name="blood_type"/>
+                                    <field name="pcr"/>
+                                    <field name="cr_ratio"/>
+
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+     <!-- action  -->
+        <record id="hms_patient_action" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">hms.patient</field>
+             <field name="view_mode">tree,form</field>
+<!--             <field name="view_id" ref="hms_patient_tree_view"/>-->
+        </record>
+    </odoo>
