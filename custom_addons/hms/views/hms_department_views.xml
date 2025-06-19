@@ -27,7 +27,7 @@
                               <field name="name"/>
                               <field name="capacity"/>
                               <field name="is_opened"/>
-                                <!--<field name="patient_ids"/>-->
+                                <field name="patient_ids"/>
                             </group>
                        </page>
                    </notebook>
@@ -41,6 +41,5 @@
         <field name="name">Departments</field>
         <field name="res_model">hms.department</field>
         <field name="view_mode">tree,form</field>
-      <!-- <field name="view_id" ref="hms.view_tree_department"/>-->
     </record>
 </odoo>

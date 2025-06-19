@@ -19,7 +19,7 @@
         <record id="hms_patient_form_view" model="ir.ui.view">
             <field name="name">hms patient form</field>
             <field name="model">hms.patient</field>
-             <field name="arch" type="xml">
+            <field name="arch" type="xml">
                 <form>
                     <sheet>
                         <notebook>
@@ -35,10 +35,23 @@
                             </page>
                             <page string="page2">
                                 <group string="medical Information">
-                                    <field name="history"/>
+                                    <field name="history">
+                                       <attributes>
+                                           <attribute name="invisible">age &lt; 50</attribute>
+                                       </attributes>
+                                    </field>
+                                    <field name="state"/>
                                     <field name="blood_type"/>
                                     <field name="pcr"/>
-                                    <field name="cr_ratio"/>
+                                    <field name="cr_ratio">
+                                        <attributes>
+                                         <attribute name="required">pcr == True</attribute>
+                                       </attributes>
+                                    </field>
+                                    <field name="department_id"/>
+                                    <field name="department_capacity" readonly="1"/>
+                                    <field name="doctor_ids" widget="many2many_tags"/>
+<!--                                    <field name="doctor_ids" widget="many2many_tags" attrs="{'readonly': [('department_id', '=', False)]}"/>-->
 
                                 </group>
                             </page>

@@ -19,12 +19,12 @@
       <form>
            <sheet>
                <notebook>
-                   <page string="Department Information">
+                   <page string="Doctor Information">
                         <group>
                           <field name="first_name"/>
                           <field name="last_name"/>
                           <field name="image"/>
-                          <!--  <field name="patient_ids" readonly="1"/>-->
+                            <field name="patient_ids" readonly="1"/>
                         </group>
                    </page>
                </notebook>
@@ -37,7 +37,7 @@
         <field name="name">Doctors</field>
         <field name="res_model">hms.doctor</field>
         <field name="view_mode">tree,form</field>
-      <!-- <field name="view_id" ref="view_tree_doctor"/>-->
+
     </record>
 
 

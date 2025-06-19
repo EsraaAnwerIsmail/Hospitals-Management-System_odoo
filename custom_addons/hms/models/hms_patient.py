@@ -1,5 +1,8 @@
 from odoo import models ,fields,api
 from datetime import date
+from odoo.exceptions import ValidationError
+
+
 
 class Patient (models.Model) :
     _name = 'hms.patient'
@@ -21,7 +24,9 @@ class Patient (models.Model) :
     age = fields.Integer(compute="_compute_age", store=True)
 
     department_id = fields.Many2one("hms.department", string="Department", domain=[('is_opened', '=', True)])
-    doctors_ids = fields.Many2many("hms.doctor", string="Doctors")
+    department_capacity = fields.Integer(related='department_id.capacity', readonly=True)
+    doctor_ids = fields.Many2many('hms.doctor')
+
     state = fields.Selection([
         ('undetermined', 'Undetermined'),
         ('good', 'Good'),
@@ -38,3 +43,16 @@ class Patient (models.Model) :
                 rec.age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
             else:
                 rec.age = 0
+
+
+    @api.constrains('pcr', 'cr_ratio')
+    def _check_cr_ratio_required_if_pcr(self):
+        for rec in self:
+            if rec.pcr and not rec.cr_ratio:
+                raise ValidationError("CR Ratio is required when PCR is checked.")
+
+    @api.onchange('age')
+    def _onchange_age(self):
+        if self.age < 50:
+            self.history = False
+
