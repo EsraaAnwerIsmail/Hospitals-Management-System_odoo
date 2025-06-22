@@ -1,0 +1,13 @@
+<odoo>
+    <menuitem id="hms_root_menu" name="Hospital Management" />
+
+    <menuitem id="hms_doctor_menu" name="Doctors" parent="hms_root_menu"/>
+    <menuitem id="hms_doctor_menu_action" name="Doctors" parent="hms_doctor_menu" action="hms_doctor_action"/>
+
+
+    <menuitem id="hms_department_menu" name="Departments" parent="hms_root_menu"/>
+    <menuitem id="hms_department_menu_action" name="Departments" parent="hms_department_menu" action="hms_department_action"/>
+
+    <menuitem id="hms_patient_menu" name="Patients" parent="hms_root_menu"/>
+    <menuitem id="hms_patient_menu_action" name="Manage Patients" parent="hms_patient_menu" action="hms_patient_action"/>
+</odoo>
