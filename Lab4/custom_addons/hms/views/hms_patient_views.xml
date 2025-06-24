@@ -1,0 +1,95 @@
+    <odoo>
+
+
+        <!-- tree view -->
+        <record id="hms_patient_tree_view" model="ir.ui.view">
+            <field name="name">hms patient tree</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="email"/>
+                    <field name="age"/>
+                    <field name="blood_type"/>
+                    <field name="pcr"/>
+                </tree>
+            </field>
+        </record>
+        <!-- form view -->
+        <record id="hms_patient_form_view" model="ir.ui.view">
+            <field name="name">hms patient form</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+<!--                        <button name="create_level_log" type="object" string="Create Log"/>-->
+                        <field name="state" widget="statusbar" options="{'clickable':1}"/>
+                    </header>
+                    <sheet>
+                        <notebook>
+                            <page string="page1">
+                                <group string="Personal Information">
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                    <field name="email"/>
+                                    <field name="age"/>
+                                    <field name="birth_date"/>
+                                    <field name="address"/>
+                                    <field name="image"/>
+                                </group>
+                            </page>
+
+                            <page string="page2">
+                                <group string="medical Information">
+                                    <field name="history">
+                                       <attributes>
+                                           <attribute name="invisible">age &lt; 50</attribute>
+                                       </attributes>
+                                    </field>
+                                    <field name="state"/>
+                                    <field name="blood_type"/>
+                                    <field name="pcr"/>
+                                    <field name="cr_ratio">
+                                        <attributes>
+                                         <attribute name="required">pcr == True</attribute>
+                                       </attributes>
+                                    </field>
+                                </group>
+                            </page>
+
+                            <page string="page3">
+                                <group string="department Information">
+                                    <field name="department_id"/>
+                                    <field name="department_capacity"/>
+                                    <field name="doctor_ids"/>
+                                </group>
+                            </page>
+
+                            <page string="page4">
+                                <group string="Level Log">
+                                    <field name="level_logs">
+                                        <tree>
+                                            <field name="description"/>
+                                            <field name="create_date"/>
+                                            <field name="create_uid"/>
+                                        </tree>
+                                    </field>
+
+                                </group>
+                            </page>
+
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+     <!-- action  -->
+        <record id="hms_patient_action" model="ir.actions.act_window">
+            <field name="name">Patients</field>
+            <field name="res_model">hms.patient</field>
+             <field name="view_mode">tree,form</field>
+<!--             <field name="view_id" ref="hms_patient_tree_view"/>-->
+        </record>
+    </odoo>
